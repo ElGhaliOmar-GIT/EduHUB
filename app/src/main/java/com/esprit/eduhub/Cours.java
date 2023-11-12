@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class UserProfile extends AppCompatActivity {
+public class Cours extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
@@ -22,7 +22,7 @@ public class UserProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_cours);
 
         // ---------------------------------------------------------------
         // --------------------- Drawer Logic
@@ -34,7 +34,7 @@ public class UserProfile extends AppCompatActivity {
         cours = findViewById(R.id.nav_cours_btn);
         toolbartitle = findViewById(R.id.toolbar_title);
 
-        toolbartitle.setText("Profile");
+        toolbartitle.setText("Cours");
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +43,7 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-        profile.setOnClickListener(new View.OnClickListener() {
+        cours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recreate();
@@ -53,14 +53,14 @@ public class UserProfile extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(UserProfile.this, Index.class);
+                redirectActivity(Cours.this, Index.class);
             }
         });
 
-        cours.setOnClickListener(new View.OnClickListener() {
+        profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(UserProfile.this, Cours.class);
+                redirectActivity(Cours.this, UserProfile.class);
             }
         });
         // ---------------------------------------------------------------
