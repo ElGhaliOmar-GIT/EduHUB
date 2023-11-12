@@ -7,16 +7,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class Index extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
     LinearLayout home, profile;
+    TextView toolbartitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,9 @@ public class Index extends AppCompatActivity {
         menu = findViewById(R.id.menu);
         home = findViewById(R.id.nav_home_btn);
         profile = findViewById(R.id.nav_profile_btn);
+        toolbartitle = findViewById(R.id.toolbar_title);
+
+        toolbartitle.setText("Acceuil");
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
