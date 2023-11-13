@@ -46,7 +46,7 @@ public class Cours extends AppCompatActivity {
         cours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recreate();
+                redirectActivity(Cours.this, CategorieActivity.class);
             }
         });
 
