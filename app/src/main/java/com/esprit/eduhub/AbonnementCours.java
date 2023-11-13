@@ -13,42 +13,29 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.esprit.eduhub.database.AppDataBase;
-import com.esprit.eduhub.entity.CategorieCours;
-
-import java.util.List;
-
-public class Index extends AppCompatActivity {
-
+public class AbonnementCours extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, profile, cours, abonnement, paiement;
+    LinearLayout home, profile, cours, abonnement;
     TextView toolbartitle;
-    Button savetest;
-
-    private AppDataBase database ;
-
+    ImageView imageCourse;
+    TextView textCourseDescription;
+    Button buttonSubscribe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index);
+        setContentView(R.layout.activity_abonnement_cours);
+        imageCourse = findViewById(R.id.Online_course);
+        textCourseDescription = findViewById(R.id. textCourseDescription);
+        buttonSubscribe = findViewById(R.id.buttonSubscribe);
 
-        // !!!!!!!!!!!!!!! MATE5DMOUCH FL INDEEEEEEEEEEEEEEEEEEEEEX !!!!!!!!!!!!!!!!!!!!!!
+        buttonSubscribe.setOnClickListener(View->
+        { Intent intent = new Intent(this, ForfaitsAbonnement.class);
+            startActivity(intent);
 
-        // ---------------------------------------------------------------
-        // --------------------- Ajout fl base de donnees categorie
-        // ---------------------------------------------------------------
-        savetest = findViewById(R.id.savetest);
-        database = AppDataBase.getAppDatabase(getApplicationContext());
-        savetest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CategorieCours categorieCours = new CategorieCours("abc");
-                database.categorieCoursDao().insertOne(categorieCours);
-                List<CategorieCours> categorieCoursList = database.categorieCoursDao().getAll();
-                System.out.println(categorieCoursList);
-            }
         });
+
+
         // ---------------------------------------------------------------
         // ---------------------------------------------------------------
 
@@ -60,11 +47,10 @@ public class Index extends AppCompatActivity {
         home = findViewById(R.id.nav_home_btn);
         profile = findViewById(R.id.nav_profile_btn);
         cours = findViewById(R.id.nav_cours_btn);
-        abonnement = findViewById(R.id.nav_AbonnementCours);
         toolbartitle = findViewById(R.id.toolbar_title);
-        paiement = findViewById(R.id.nav_Paiement_Cours);
+        abonnement = findViewById(R.id.nav_AbonnementCours);
 
-        toolbartitle.setText("Acceuil");
+        toolbartitle.setText("Abonnement");
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +59,7 @@ public class Index extends AppCompatActivity {
             }
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
+        abonnement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recreate();
@@ -83,36 +69,21 @@ public class Index extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, UserProfile.class);
+                redirectActivity(AbonnementCours.this, UserProfile.class);
             }
         });
 
-        cours.setOnClickListener(new View.OnClickListener() {
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, Cours.class);
+                redirectActivity(AbonnementCours.this, Index.class);
             }
         });
-
-        abonnement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(Index.this, AbonnementCours.class);
-            }
-        });
-
-        paiement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(Index.this, PaiementCours.class);
-            }
-        });
-
-
         // ---------------------------------------------------------------
         // ---------------------------------------------------------------
+
+
     }
-
     // ---------------------------------------------------------------
     // --------------------- Drawer Methodes
     // ---------------------------------------------------------------
@@ -140,4 +111,8 @@ public class Index extends AppCompatActivity {
     }
     // ---------------------------------------------------------------
     // ---------------------------------------------------------------
+
+
+
+
 }

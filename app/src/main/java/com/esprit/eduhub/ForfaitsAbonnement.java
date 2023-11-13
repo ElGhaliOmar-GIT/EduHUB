@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,44 +14,56 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.esprit.eduhub.database.AppDataBase;
-import com.esprit.eduhub.entity.CategorieCours;
-
-import java.util.List;
-
-public class Index extends AppCompatActivity {
-
+public class ForfaitsAbonnement extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, profile, cours, abonnement, paiement;
+    LinearLayout home, profile, cours, abonnement, forfait;
     TextView toolbartitle;
-    Button savetest;
 
-    private AppDataBase database ;
-
+    Button confirm_button ;
+    RadioButton radioStandard, radioPremium ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index);
+        setContentView(R.layout.activity_forfaits_abonnement);
 
-        // !!!!!!!!!!!!!!! MATE5DMOUCH FL INDEEEEEEEEEEEEEEEEEEEEEX !!!!!!!!!!!!!!!!!!!!!!
+        confirm_button = findViewById(R.id.confirm_button);
+        radioStandard = findViewById(R.id.fragmentStandard);
+        radioPremium = findViewById(R.id.fragmentPremium);
 
-        // ---------------------------------------------------------------
-        // --------------------- Ajout fl base de donnees categorie
-        // ---------------------------------------------------------------
-        savetest = findViewById(R.id.savetest);
-        database = AppDataBase.getAppDatabase(getApplicationContext());
-        savetest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CategorieCours categorieCours = new CategorieCours("abc");
-                database.categorieCoursDao().insertOne(categorieCours);
-                List<CategorieCours> categorieCoursList = database.categorieCoursDao().getAll();
-                System.out.println(categorieCoursList);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        radioStandard.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                fragmentTransaction.replace(R.id.forfaitStandardContainer, new ForfaitStandardFragment());
+                fragmentTransaction.commit();
             }
         });
+
+        radioPremium.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                fragmentTransaction.replace(R.id.forfaitPremiumContainer, new ForfaitPremiumFragment());
+                fragmentTransaction.commit();
+            }
+        });
+        // ...
+
+        confirm_button.setOnClickListener( View-> {
+
+            Intent intent = new Intent(this, PaiementCours.class);
+            startActivity(intent);
+
+
+
+
+        });
+
+
+
         // ---------------------------------------------------------------
         // ---------------------------------------------------------------
 
@@ -61,8 +76,8 @@ public class Index extends AppCompatActivity {
         profile = findViewById(R.id.nav_profile_btn);
         cours = findViewById(R.id.nav_cours_btn);
         abonnement = findViewById(R.id.nav_AbonnementCours);
+        forfait = findViewById(R.id.nav_AbonnementCours);
         toolbartitle = findViewById(R.id.toolbar_title);
-        paiement = findViewById(R.id.nav_Paiement_Cours);
 
         toolbartitle.setText("Acceuil");
 
@@ -73,7 +88,7 @@ public class Index extends AppCompatActivity {
             }
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
+        abonnement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recreate();
@@ -83,28 +98,20 @@ public class Index extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, UserProfile.class);
+                redirectActivity(ForfaitsAbonnement.this, UserProfile.class);
             }
         });
 
-        cours.setOnClickListener(new View.OnClickListener() {
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, Cours.class);
+                redirectActivity(ForfaitsAbonnement.this, Index.class);
             }
         });
-
-        abonnement.setOnClickListener(new View.OnClickListener() {
+        forfait.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, AbonnementCours.class);
-            }
-        });
-
-        paiement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(Index.this, PaiementCours.class);
+                redirectActivity(ForfaitsAbonnement.this, Index.class);
             }
         });
 
@@ -112,6 +119,11 @@ public class Index extends AppCompatActivity {
         // ---------------------------------------------------------------
         // ---------------------------------------------------------------
     }
+        // ---------------------------------------------------------------
+        // ---------------------------------------------------------------
+
+
+
 
     // ---------------------------------------------------------------
     // --------------------- Drawer Methodes
@@ -140,4 +152,5 @@ public class Index extends AppCompatActivity {
     }
     // ---------------------------------------------------------------
     // ---------------------------------------------------------------
+
 }

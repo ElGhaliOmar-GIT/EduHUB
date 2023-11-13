@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ForfaitPremiumFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/Online_course"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+
+            android:scaleType="centerCrop"
+            android:src="@drawable/online_course"
+            tools:srcCompat="@drawable/online_course" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forfait Premium"
+            android:textSize="12sp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prix : 20$ par mois"
+            android:textSize="12sp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description : Contenu Premium"
+            android:textSize="12sp"
+            android:padding="10dp"/>
+
+        <Button
+            android:id="@+id/confirm_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+
+            android:layout_marginTop="-10dp"
+            android:layout_marginRight="50dp"
+            android:backgroundTint="@color/blue"
+            android:text="Confirmer l'abonnement" />
+
+
+    </LinearLayout>
+
+
+</FrameLayout>
