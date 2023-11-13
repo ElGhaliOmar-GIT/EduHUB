@@ -16,6 +16,10 @@ public class Evenement {
     private String titre;
     @ColumnInfo(name = "lieu")
     private String lieu;
+
+    @ColumnInfo(name = "date")
+    private String date;
+
     @ColumnInfo(name = "description")
     private String description;
     @ColumnInfo(name = "status")
@@ -23,10 +27,31 @@ public class Evenement {
     @ColumnInfo(name = "type")
     private String type;
 
+    @ColumnInfo(name = "img")
+    private int img;
+
+
+
     // ----------------------------------
     @ColumnInfo(name = "utilisateur_id") // Foreign key reference
     private int utilisateurId;
     // ----------------------------------
+
+    public int getImg() {
+        return img;
+    }
+
+    public void setImg(int img) {
+        this.img = img;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public int getId() {
         return id;
@@ -82,5 +107,29 @@ public class Evenement {
 
     public void setUtilisateurId(int utilisateurId) {
         this.utilisateurId = utilisateurId;
+    }
+
+    public Evenement(String titre, String lieu, String date, String description, String status, String type, int img) {
+        this.titre = titre;
+        this.lieu = lieu;
+        this.date = date;
+        this.description = description;
+        this.status = status;
+        this.type = type;
+        this.img = img;
+    }
+    @Override
+    public String toString() {
+        return "Evenement{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", lieu='" + lieu + '\'' +
+                ", date='" + lieu + '\'' +
+                ", description='" + description + '\'' +
+                ", status='" + status + '\'' +
+                ", type='" + type + '\'' +
+                ", img='" + img + '\'' +
+                ", utilisateurId=" + utilisateurId +
+                '}';
     }
 }

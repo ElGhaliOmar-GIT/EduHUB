@@ -9,12 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.esprit.eduhub.database.AppDataBase;
 import com.esprit.eduhub.entity.CategorieCours;
+import com.esprit.eduhub.entity.Evenement;
 
 import java.util.List;
 
@@ -22,10 +24,9 @@ public class Index extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, profile, cours;
+    LinearLayout home, profile, cours , evenement;
     TextView toolbartitle;
     Button savetest;
-
     private AppDataBase database ;
 
     @Override
@@ -49,8 +50,7 @@ public class Index extends AppCompatActivity {
                 System.out.println(categorieCoursList);
             }
         });
-        // ---------------------------------------------------------------
-        // ---------------------------------------------------------------
+
 
         // ---------------------------------------------------------------
         // --------------------- Drawer Logic
@@ -61,6 +61,7 @@ public class Index extends AppCompatActivity {
         profile = findViewById(R.id.nav_profile_btn);
         cours = findViewById(R.id.nav_cours_btn);
         toolbartitle = findViewById(R.id.toolbar_title);
+        evenement= findViewById(R.id.nav_evenement_btn);
 
         toolbartitle.setText("Acceuil");
 
@@ -91,6 +92,15 @@ public class Index extends AppCompatActivity {
                 redirectActivity(Index.this, Cours.class);
             }
         });
+
+        evenement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(Index.this, event_recycle_view.class);
+            }
+        });
+
+
         // ---------------------------------------------------------------
         // ---------------------------------------------------------------
     }

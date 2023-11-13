@@ -13,6 +13,18 @@
         android:theme="@style/Theme.EduHUB"
         tools:targetApi="34">
         <activity
+            android:name=".EventDetails"
+            android:exported="false" />
+        <activity
+            android:name=".event_recycle_view"
+            android:exported="false" />
+        <activity
+            android:name=".EventViewHolder"
+            android:exported="false" />
+        <activity
+            android:name=".Event"
+            android:exported="false" />
+        <activity
             android:name=".Cours"
             android:exported="false" />
         <activity

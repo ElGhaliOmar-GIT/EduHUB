@@ -5,22 +5,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(
-        foreignKeys = {
-                @ForeignKey(
-                        entity = Utilisateur.class,
-                        parentColumns = "id",
-                        childColumns = "utilisateur_id",
-                        onDelete = ForeignKey.CASCADE
-                ),
-                @ForeignKey(
-                        entity = CategorieCours.class,
-                        parentColumns = "id",
-                        childColumns = "categorie_id",
-                        onDelete = ForeignKey.CASCADE
-                )
-        }
-)
+@Entity
 public class Cours {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -30,11 +15,7 @@ public class Cours {
     private String description;
 
     // ----------------------------------
-    @ColumnInfo(name = "utilisateur_id") // Foreign key reference
-    private int utilisateurId;
-    @ColumnInfo(name = "categorie_id") // Foreign key reference
-    private int categorieId;
-    // ----------------------------------
+
 
     public int getId() {
         return id;
@@ -60,19 +41,5 @@ public class Cours {
         this.description = description;
     }
 
-    public int getUtilisateurId() {
-        return utilisateurId;
-    }
 
-    public void setUtilisateurId(int utilisateurId) {
-        this.utilisateurId = utilisateurId;
-    }
-
-    public int getCategorieId() {
-        return categorieId;
-    }
-
-    public void setCategorieId(int categorieId) {
-        this.categorieId = categorieId;
-    }
 }

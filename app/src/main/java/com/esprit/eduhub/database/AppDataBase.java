@@ -26,7 +26,7 @@ import com.esprit.eduhub.entity.Question;
 import com.esprit.eduhub.entity.Utilisateur;
 
 @Database(entities = {Utilisateur.class, Commentaire.class, CategorieCours.class, Abonnement.class,
-Cours.class, Evenement.class, Examen.class, Paiement.class, Question.class,}, version = 1, exportSchema = false)
+Cours.class, Evenement.class, Examen.class, Paiement.class, Question.class,}, version = 1 , exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
     private static AppDataBase instance;
     public abstract UtilisateurDao utilisateurDao();
