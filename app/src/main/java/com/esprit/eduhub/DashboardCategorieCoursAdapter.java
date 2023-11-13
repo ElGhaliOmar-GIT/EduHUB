@@ -11,23 +11,23 @@ import com.esprit.eduhub.entity.CategorieCours;
 
 import java.util.ArrayList;
 
-public class CategorieCoursAdapter extends RecyclerView.Adapter<CategorieCoursHolder> {
+public class DashboardCategorieCoursAdapter extends RecyclerView.Adapter<DashboardCategorieCoursHolder> {
 
     ArrayList<CategorieCours> categories;
 
-    public CategorieCoursAdapter(ArrayList<CategorieCours> categories) {
+    public DashboardCategorieCoursAdapter(ArrayList<CategorieCours> categories) {
         this.categories = categories;
     }
 
     @NonNull
     @Override
-    public CategorieCoursHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.categorie_cours_item,parent,false);
-        return new CategorieCoursHolder(itemView);
+    public DashboardCategorieCoursHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_categorie_cours_item,parent,false);
+        return new DashboardCategorieCoursHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategorieCoursHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DashboardCategorieCoursHolder holder, int position) {
         holder.titre.setText(categories.get(position).getTitre());
     }
 
