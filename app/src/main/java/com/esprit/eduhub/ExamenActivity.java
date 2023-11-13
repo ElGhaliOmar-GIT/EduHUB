@@ -33,9 +33,9 @@ public class ExamenActivity extends AppCompatActivity {
 
         examenList = findViewById(R.id.listexamen);
         ArrayList<Examen> exams = new ArrayList<>() ;
-        exams.add(new Examen("Titre","Niveau"));
-        exams.add(new Examen("Titre2","Niveau2"));
-        exams.add(new Examen("Titre3","Niveau3"));
+        exams.add(new Examen("Titre"));
+        exams.add(new Examen("Titre2"));
+        exams.add(new Examen("Titre3"));
 
         ExamenItemAdapter examenItemAdapter = new ExamenItemAdapter(exams);
         examenList.setAdapter(examenItemAdapter);

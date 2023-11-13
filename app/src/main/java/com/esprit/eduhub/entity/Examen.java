@@ -7,34 +7,33 @@ import androidx.room.PrimaryKey;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@Entity(tableName = "examen")
 public class Examen {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "nom")
     private String nom;
-    @ColumnInfo(name = "niveauDiff")
-    private String niveauDiff;
+//    @ColumnInfo(name = "niveauDiff")
+//    private String niveauDiff;
 
 
     // ----------------------------------
 
-    public void setNiveauDiff(String niveauDiff) {
-        this.niveauDiff = niveauDiff;
-    }
-
-    public String getNiveauDiff() {
-        return niveauDiff;
-    }
+//    public void setNiveauDiff(String niveauDiff) {
+//        this.niveauDiff = niveauDiff;
+//    }
+//
+//    public String getNiveauDiff() {
+//        return niveauDiff;
+//    }
     // ----------------------------------
 
     public int getId() {
         return id;
     }
 
-    public Examen(String nom, String niveauDiff) {
+    public Examen(String nom) {
         this.nom = nom;
-        this.niveauDiff = niveauDiff;
     }
 
     public void setId(int id) {
@@ -47,5 +46,13 @@ public class Examen {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    @Override
+    public String toString() {
+        return "Examen{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                '}';
     }
 }
