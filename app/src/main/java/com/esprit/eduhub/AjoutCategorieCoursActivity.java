@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,39 +19,35 @@ import com.esprit.eduhub.entity.CategorieCours;
 
 import java.util.List;
 
-public class Index extends AppCompatActivity {
+public class AjoutCategorieCoursActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
     LinearLayout home, profile, cours;
     TextView toolbartitle;
-    Button savetest;
-
+    // --------
     private AppDataBase database;
+    EditText titre;
+    Button ajoutBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index);
+        setContentView(R.layout.activity_ajout_categorie_cours);
+        ajoutBtn = findViewById(R.id.ajout_categ_btn);
+        titre = findViewById(R.id.ajout_categ_titre);
 
-        // !!!!!!!!!!!!!!! MATE5DMOUCH FL INDEEEEEEEEEEEEEEEEEEEEEX !!!!!!!!!!!!!!!!!!!!!!
-
-        // ---------------------------------------------------------------
-        // --------------------- Ajout fl base de donnees categorie
-        // ---------------------------------------------------------------
-        savetest = findViewById(R.id.savetest);
         database = AppDataBase.getAppDatabase(getApplicationContext());
-        savetest.setOnClickListener(new View.OnClickListener() {
+        ajoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CategorieCours categorieCours = new CategorieCours("abc");
+                CategorieCours categorieCours = new CategorieCours(titre.getText().toString());
                 database.categorieCoursDao().insertOne(categorieCours);
                 List<CategorieCours> categorieCoursList = database.categorieCoursDao().getAll();
                 System.out.println(categorieCoursList);
             }
         });
-        // ---------------------------------------------------------------
-        // ---------------------------------------------------------------
 
         // ---------------------------------------------------------------
         // --------------------- Drawer Logic
@@ -62,7 +59,7 @@ public class Index extends AppCompatActivity {
         cours = findViewById(R.id.nav_cours_btn);
         toolbartitle = findViewById(R.id.toolbar_title);
 
-        toolbartitle.setText("Acceuil");
+        toolbartitle.setText("Ajout Categorie");
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,28 +68,29 @@ public class Index extends AppCompatActivity {
             }
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recreate();
-            }
-        });
-
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, UserProfile.class);
+                redirectActivity(AjoutCategorieCoursActivity.this, UserProfile.class);
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(AjoutCategorieCoursActivity.this, Index.class);
             }
         });
 
         cours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, CategorieActivity.class);
+                redirectActivity(AjoutCategorieCoursActivity.this, CategorieActivity.class);
             }
         });
         // ---------------------------------------------------------------
         // ---------------------------------------------------------------
+
     }
 
     // ---------------------------------------------------------------
@@ -122,4 +120,5 @@ public class Index extends AppCompatActivity {
     }
     // ---------------------------------------------------------------
     // ---------------------------------------------------------------
+
 }
