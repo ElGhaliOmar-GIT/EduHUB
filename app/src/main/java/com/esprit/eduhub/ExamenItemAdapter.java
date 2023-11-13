@@ -1,5 +1,6 @@
 package com.esprit.eduhub;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.esprit.eduhub.database.AppDataBase;
 import com.esprit.eduhub.entity.Examen;
 
 import java.util.ArrayList;
@@ -26,9 +28,17 @@ public class ExamenItemAdapter extends RecyclerView.Adapter<ExamenItemHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ExamenItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ExamenItemHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.examenTitre.setText(examens.get(position).getNom());
         holder.niveauDiff.setText(examens.get(position).getNiveauDiff());
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppDataBase.getAppDatabase(v.getContext()).examenDao().delete(examens.get(position));
+                examens.remove(position);
+                notifyItemRemoved(position);
+            }
+        });
 
     }
 
