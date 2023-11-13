@@ -1,6 +1,7 @@
 package com.esprit.eduhub;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,11 +11,14 @@ public class ExamenItemHolder extends RecyclerView.ViewHolder {
 
     TextView examenTitre;
     TextView niveauDiff;
+    ImageButton edit, delete;
 
     public ExamenItemHolder(@NonNull View itemView) {
         super(itemView);
-        examenTitre=itemView.findViewById(R.id.item_examen_titre);
-        niveauDiff=itemView.findViewById(R.id.item_examen_niveau);
+        edit = itemView.findViewById(R.id.dashboard_examen_item_modifier_btn);
+        delete = itemView.findViewById(R.id.dashboard_examen_item_modifier_btn);
+        examenTitre=itemView.findViewById(R.id.dashboard_examen_item_name);
+        niveauDiff=itemView.findViewById(R.id.dashboard_examen_item_niveau);
 
     }
 }

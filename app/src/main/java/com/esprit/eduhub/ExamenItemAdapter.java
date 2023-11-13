@@ -28,7 +28,7 @@ public class ExamenItemAdapter extends RecyclerView.Adapter<ExamenItemHolder> {
     @Override
     public void onBindViewHolder(@NonNull ExamenItemHolder holder, int position) {
         holder.examenTitre.setText(examens.get(position).getNom());
-        //holder.niveauDiff.setText(examens.get(position).getNiveauDiff());
+        holder.niveauDiff.setText(examens.get(position).getNiveauDiff());
 
     }
 

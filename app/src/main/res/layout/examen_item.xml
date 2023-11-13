@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:contentPadding="10dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="8dp"
+    android:elevation="0dp"
+    app:cardBackgroundColor="@color/light_grey">
 
-    <TextView
-        android:id="@+id/item_examen_titre"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:text="examenTitre"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/dashboard_examen_item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="nom"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/dashboard_examen_item_niveau"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="niveau"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textSize="20dp"/>
 
-    <TextView
-        android:id="@+id/item_examen_niveau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="niveau"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        <ImageButton
+            android:id="@+id/dashboard_examen_item_modifier_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_mode_edit_24"
+            android:background="@drawable/examen_btn_shape"
+            android:layout_marginEnd="10dp"/>
 
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/dashboard_examen_item_supprimer_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_delete_24"
+            android:background="@drawable/examen_btn_shape"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

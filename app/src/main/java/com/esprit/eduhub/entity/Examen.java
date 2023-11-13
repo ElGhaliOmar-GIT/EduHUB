@@ -13,28 +13,28 @@ public class Examen {
     private int id;
     @ColumnInfo(name = "nom")
     private String nom;
-//    @ColumnInfo(name = "niveauDiff")
-//    private String niveauDiff;
+    @ColumnInfo(name = "niveauDiff")
+    private String niveauDiff;
 
 
     // ----------------------------------
 
-//    public void setNiveauDiff(String niveauDiff) {
-//        this.niveauDiff = niveauDiff;
-//    }
-//
-//    public String getNiveauDiff() {
-//        return niveauDiff;
-//    }
+    public void setNiveauDiff(String niveauDiff) {
+        this.niveauDiff = niveauDiff;
+    }
+
+    public String getNiveauDiff() {
+        return niveauDiff;
+    }
     // ----------------------------------
 
     public int getId() {
         return id;
     }
 
-    public Examen(String nom) {
-        this.nom = nom;
-    }
+//    public Examen(String nom) {
+//        this.nom = nom;
+//    }
 
     public void setId(int id) {
         this.id = id;
@@ -48,11 +48,17 @@ public class Examen {
         this.nom = nom;
     }
 
+    public Examen(String nom, String niveauDiff) {
+        this.nom = nom;
+        this.niveauDiff = niveauDiff;
+    }
+
     @Override
     public String toString() {
         return "Examen{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
+                ", niveauDiff='" + niveauDiff + '\'' +
                 '}';
     }
 }
