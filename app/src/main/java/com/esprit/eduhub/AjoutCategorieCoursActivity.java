@@ -46,7 +46,7 @@ public class AjoutCategorieCoursActivity extends AppCompatActivity {
                 database.categorieCoursDao().insertOne(categorieCours);
                 List<CategorieCours> categorieCoursList = database.categorieCoursDao().getAll();
 
-                redirectActivity(AjoutCategorieCoursActivity.this, CategorieActivity.class);
+                redirectActivity(AjoutCategorieCoursActivity.this, DashboardCategorieCoursActivity.class);
             }
         });
 
