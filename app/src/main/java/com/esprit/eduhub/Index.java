@@ -26,7 +26,7 @@ public class Index extends AppCompatActivity {
     TextView toolbartitle;
     Button savetest;
 
-    private AppDataBase database ;
+    private AppDataBase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
