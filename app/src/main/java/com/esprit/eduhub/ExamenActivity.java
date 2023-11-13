@@ -3,55 +3,43 @@ package com.esprit.eduhub;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.esprit.eduhub.database.AppDataBase;
-import com.esprit.eduhub.entity.CategorieCours;
+import com.esprit.eduhub.entity.Examen;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class Index extends AppCompatActivity {
+public class ExamenActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageView menu;
     LinearLayout home, profile, cours , examenButtom;
     TextView toolbartitle;
-    Button savetest;
-
-
-    private AppDataBase database ;
+    RecyclerView examenList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index);
+        setContentView(R.layout.activity_examen);
 
-        // !!!!!!!!!!!!!!! MATE5DMOUCH FL INDEEEEEEEEEEEEEEEEEEEEEX !!!!!!!!!!!!!!!!!!!!!!
+        examenList = findViewById(R.id.listexamen);
+        ArrayList<Examen> exams = new ArrayList<>() ;
+        exams.add(new Examen("Titre","Niveau"));
+        exams.add(new Examen("Titre2","Niveau2"));
+        exams.add(new Examen("Titre3","Niveau3"));
 
-        // ---------------------------------------------------------------
-        // --------------------- Ajout fl base de donnees categorie
-        // ---------------------------------------------------------------
-        savetest = findViewById(R.id.savetest);
-        database = AppDataBase.getAppDatabase(getApplicationContext());
-        savetest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CategorieCours categorieCours = new CategorieCours("abc");
-                database.categorieCoursDao().insertOne(categorieCours);
-                List<CategorieCours> categorieCoursList = database.categorieCoursDao().getAll();
-                System.out.println(categorieCoursList);
-            }
-        });
-        // ---------------------------------------------------------------
-        // ---------------------------------------------------------------
+        ExamenItemAdapter examenItemAdapter = new ExamenItemAdapter(exams);
+        examenList.setAdapter(examenItemAdapter);
+        examenList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
 
         // ---------------------------------------------------------------
         // --------------------- Drawer Logic
@@ -64,7 +52,7 @@ public class Index extends AppCompatActivity {
         toolbartitle = findViewById(R.id.toolbar_title);
         examenButtom = findViewById(R.id.nav_examen_btn);
 
-        toolbartitle.setText("Acceuil");
+        toolbartitle.setText("Examen");
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,30 +61,30 @@ public class Index extends AppCompatActivity {
             }
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
+        examenButtom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 recreate();
             }
         });
 
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(ExamenActivity.this, Index.class);
+            }
+        });
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, UserProfile.class);
+                redirectActivity(ExamenActivity.this, UserProfile.class);
             }
         });
 
         cours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, Cours.class);
-            }
-        });
-        examenButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(Index.this, ExamenActivity.class);
+                redirectActivity(ExamenActivity.this, Cours.class);
             }
         });
         // ---------------------------------------------------------------
@@ -130,4 +118,5 @@ public class Index extends AppCompatActivity {
     }
     // ---------------------------------------------------------------
     // ---------------------------------------------------------------
+
 }
