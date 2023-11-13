@@ -14,9 +14,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.esprit.eduhub.database.AppDataBase;
 import com.esprit.eduhub.entity.CategorieCours;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CategorieActivity extends AppCompatActivity {
 
@@ -24,6 +26,8 @@ public class CategorieActivity extends AppCompatActivity {
     ImageView menu;
     LinearLayout home, profile, cours;
     TextView toolbartitle;
+    // --------
+    private AppDataBase database;
     RecyclerView listCategorie;
 
     @Override
@@ -32,12 +36,12 @@ public class CategorieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_categorie);
         listCategorie = findViewById(R.id.list_categories);
 
+        database = AppDataBase.getAppDatabase(getApplicationContext());
+        List<CategorieCours> listCategorieCoursList = database.categorieCoursDao().getAll();
         ArrayList<CategorieCours> categories = new ArrayList<>();
-        categories.add(new CategorieCours("abc"));
-        categories.add(new CategorieCours("ok"));
-        categories.add(new CategorieCours("cc"));
-        categories.add(new CategorieCours("ddddd"));
-        categories.add(new CategorieCours("ddddd"));
+        for (CategorieCours cat:listCategorieCoursList) {
+            categories.add(cat);
+        }
         CategorieCoursAdapter categorieAdapter = new CategorieCoursAdapter(categories);
         listCategorie.setAdapter(categorieAdapter);
         listCategorie.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));

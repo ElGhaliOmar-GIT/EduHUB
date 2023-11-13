@@ -25,7 +25,6 @@ public class Index extends AppCompatActivity {
     LinearLayout home, profile, cours;
     TextView toolbartitle;
     Button savetest;
-
     private AppDataBase database;
 
     @Override

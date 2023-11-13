@@ -45,7 +45,8 @@ public class AjoutCategorieCoursActivity extends AppCompatActivity {
                 CategorieCours categorieCours = new CategorieCours(titre.getText().toString());
                 database.categorieCoursDao().insertOne(categorieCours);
                 List<CategorieCours> categorieCoursList = database.categorieCoursDao().getAll();
-                System.out.println(categorieCoursList);
+
+                redirectActivity(AjoutCategorieCoursActivity.this, CategorieActivity.class);
             }
         });
 
