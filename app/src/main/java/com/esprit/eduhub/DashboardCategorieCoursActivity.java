@@ -3,14 +3,23 @@ package com.esprit.eduhub;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.esprit.eduhub.database.AppDataBase;
+import com.esprit.eduhub.entity.CategorieCours;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DashboardCategorieCoursActivity extends AppCompatActivity {
 
@@ -19,11 +28,33 @@ public class DashboardCategorieCoursActivity extends AppCompatActivity {
     LinearLayout home, profile, cours;
     TextView toolbartitle;
     // --------
+    private AppDataBase database;
+    RecyclerView listCategorie;
+    Button ajouter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_categorie_cours);
+        listCategorie = findViewById(R.id.dashboard_list_categories);
+        ajouter = findViewById(R.id.dashboard_ajouter_btn);
+
+        database = AppDataBase.getAppDatabase(getApplicationContext());
+        List<CategorieCours> listCategorieCoursList = database.categorieCoursDao().getAll();
+        ArrayList<CategorieCours> categories = new ArrayList<>();
+        for (CategorieCours cat:listCategorieCoursList) {
+            categories.add(cat);
+        }
+        DashboardCategorieCoursAdapter categorieAdapter = new DashboardCategorieCoursAdapter(categories);
+        listCategorie.setAdapter(categorieAdapter);
+        listCategorie.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
+
+        ajouter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(DashboardCategorieCoursActivity.this, AjoutCategorieCoursActivity.class);
+            }
+        });
 
         // ---------------------------------------------------------------
         // --------------------- Drawer Logic
@@ -41,13 +72,6 @@ public class DashboardCategorieCoursActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openDrawer(drawerLayout);
-            }
-        });
-
-        cours.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recreate();
             }
         });
 
