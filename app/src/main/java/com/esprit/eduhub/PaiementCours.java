@@ -70,9 +70,6 @@ public class PaiementCours extends AppCompatActivity {
                 System.out.println(paiementList);
 
 
-
-
-
              }
         });
     }

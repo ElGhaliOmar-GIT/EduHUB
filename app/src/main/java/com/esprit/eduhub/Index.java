@@ -104,7 +104,7 @@ public class Index extends AppCompatActivity {
         paiement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, PaiementCours.class);
+                redirectActivity(Index.this, ListPaiementCours.class);
             }
         });
 
