@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,21 +16,24 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PaiementCours extends AppCompatActivity {
-    DrawerLayout drawerLayout;
-    ImageView menu;
-    LinearLayout home, profile, cours, abonnement, forfait, paiement;
-    TextView toolbartitle;
+import com.esprit.eduhub.database.AppDataBase;
+import com.esprit.eduhub.entity.Paiement;
 
+import java.util.List;
+
+public class PaiementCours extends AppCompatActivity {
+    private AppDataBase database;
     RadioButton radioVisa, radioMasterCard, E_dinar;
     EditText editCardName, editCardNumber, editExpirationDate, editCvc;
     Button buttonPay;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paiement_cours);
+
+        // Initialisez la base de données
+        database = AppDataBase.getAppDatabase(getApplicationContext());
 
         radioVisa = findViewById(R.id.radioVisa);
         radioMasterCard = findViewById(R.id.radioMasterCard);
@@ -64,7 +65,15 @@ public class PaiementCours extends AppCompatActivity {
                     Toast.makeText(PaiementCours.this, "Veuillez sélectionner un type de carte", Toast.LENGTH_SHORT).show();
                 } else {
 
+                    Paiement paiement = new Paiement();
+
+
+                    // Ajoutez le paiementCours à la base de données
+                    database.paiementDao().insertOne(paiement);
+
+                    // Affichez le dialogue de confirmation
                     showConfirmationDialog();
+
                 }
             }
         });
@@ -78,7 +87,10 @@ public class PaiementCours extends AppCompatActivity {
                 .create()
                 .show();
     }
+}
 
 
-    }
+
+
+
 
