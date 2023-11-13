@@ -22,72 +22,63 @@ import com.esprit.eduhub.entity.Paiement;
 import java.util.List;
 
 public class PaiementCours extends AppCompatActivity {
-    private AppDataBase database;
-    RadioButton radioVisa, radioMasterCard, E_dinar;
-    EditText editCardName, editCardNumber, editExpirationDate, editCvc;
+    Button save;
+    EditText nomCarte, numeroCarte, dateExpiration, codeCarte;
+    DrawerLayout drawerLayout;
+    ImageView menu;
+    LinearLayout home, profile, cours, examenButtom, paiement;
+    TextView toolbartitle;
     Button buttonPay;
+    RadioButton radioVisa, radioMasterCard, E_dinar;
+    private AppDataBase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paiement_cours);
 
-        // Initialisez la base de données
-        database = AppDataBase.getAppDatabase(getApplicationContext());
-
+        nomCarte =findViewById(R.id.editCardName);
+        numeroCarte =findViewById(R.id.editCardNumber);
+        dateExpiration =findViewById(R.id.editExpirationDate);
+        codeCarte = findViewById(R.id.editCvc);
         radioVisa = findViewById(R.id.radioVisa);
         radioMasterCard = findViewById(R.id.radioMasterCard);
         E_dinar = findViewById(R.id.E_dinar);
-        editCardName = findViewById(R.id.editCardName);
-        editCardNumber = findViewById(R.id.editCardNumber);
-        editExpirationDate = findViewById(R.id.editExpirationDate);
-        editCvc = findViewById(R.id.editCvc);
-        buttonPay = findViewById(R.id.buttonPay);
+        buttonPay =findViewById(R.id.buttonPay);
+
+
+
+        database = AppDataBase.getAppDatabase(getApplicationContext());
 
         buttonPay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // Récupérez les valeurs des champs de saisie
-                String cardName = editCardName.getText().toString();
-                String cardNumber = editCardNumber.getText().toString();
-                String expirationDate = editExpirationDate.getText().toString();
-                String cvc = editCvc.getText().toString();
+            public void onClick(View v) {
+                String cartType = "";
 
-                if (TextUtils.isEmpty(cardName)) {
-                    Toast.makeText(PaiementCours.this, "Veuillez saisir le nom de la carte", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(cardNumber) || cardNumber.length() < 16) {
-                    Toast.makeText(PaiementCours.this, "Le numéro de carte doit avoir au moins 16 chiffres", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(expirationDate) || expirationDate.length() < 5) {
-                    Toast.makeText(PaiementCours.this, "Veuillez saisir une date d'expiration au format MM/YY", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(cvc) || cvc.length() < 3) {
-                    Toast.makeText(PaiementCours.this, "Le code CVC doit avoir au moins 3 chiffres", Toast.LENGTH_SHORT).show();
-                } else if (!radioVisa.isChecked() && !radioMasterCard.isChecked() && !E_dinar.isChecked()) {
-                    Toast.makeText(PaiementCours.this, "Veuillez sélectionner un type de carte", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    Paiement paiement = new Paiement();
-
-
-                    // Ajoutez le paiementCours à la base de données
-                    database.paiementDao().insertOne(paiement);
-
-                    // Affichez le dialogue de confirmation
-                    showConfirmationDialog();
-
+                if (radioVisa.isChecked()) {
+               cartType = "Visa";
                 }
-            }
+                if (radioMasterCard.isChecked()) {
+                    cartType = "MasterCard";
+                }
+                if (E_dinar.isChecked()) {
+                    cartType = "edinar";
+                }
+                Paiement paiement = new Paiement(cartType, nomCarte.getText().toString(),Integer.parseInt(numeroCarte.getText().toString()),dateExpiration.getText().toString(), Integer.parseInt(codeCarte.getText().toString()));
+                database.paiementDao().insertOne(paiement);
+                List<Paiement> paiementList = database.paiementDao().getAll();
+                System.out.println(paiementList);
+
+
+
+
+
+             }
         });
     }
-
-    private void showConfirmationDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Confirmation de paiement")
-                .setMessage("Votre paiement a été effectué avec succès !")
-                .setPositiveButton("OK", null)
-                .create()
-                .show();
-    }
 }
+
+
 
 
 

@@ -16,6 +16,9 @@ public class Paiement {
     private String nomCarte;
     @ColumnInfo(name = "numero_carte")
     private int numeroCarte;
+
+    @ColumnInfo(name = "expiration_date")
+    private String expirationDate;
     @ColumnInfo(name = "code_carte")
     private int codeCarte;
 
@@ -60,5 +63,29 @@ public class Paiement {
 
     public void setCodeCarte(int codeCarte) {
         this.codeCarte = codeCarte;
+    }
+
+    public String getExpirationDate() {return expirationDate;}
+
+    public void setExpirationDate(String expirationDate) {this.expirationDate = expirationDate;}
+
+    public Paiement(String typeCarte, String nomCarte, int numeroCarte, String expirationDate, int codeCarte) {
+        this.typeCarte = typeCarte;
+        this.nomCarte = nomCarte;
+        this.numeroCarte = numeroCarte;
+        this.expirationDate = expirationDate;
+        this.codeCarte = codeCarte;
+    }
+
+    @Override
+    public String toString() {
+        return "Paiement{" +
+                "id=" + id +
+                ", typeCarte='" + typeCarte + '\'' +
+                ", nomCarte='" + nomCarte + '\'' +
+                ", numeroCarte=" + numeroCarte +
+                ", expirationDate='" + expirationDate + '\'' +
+                ", codeCarte=" + codeCarte +
+                '}';
     }
 }

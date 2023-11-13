@@ -13,6 +13,12 @@
         android:theme="@style/Theme.EduHUB"
         tools:targetApi="34">
         <activity
+            android:name=".ListPaiementCours"
+            android:exported="false" />
+        <activity
+            android:name=".entity.ListPaiementCours"
+            android:exported="false" />
+        <activity
             android:name=".PaiementCours"
             android:exported="false" />
         <activity
