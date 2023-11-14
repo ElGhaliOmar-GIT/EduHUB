@@ -7,7 +7,7 @@ import androidx.room.Relation;
 
 import java.util.List;
 
-@Entity
+@Entity(tableName = "utilisateur")
 public class Utilisateur {
     @PrimaryKey(autoGenerate = true)
     private int id;
