@@ -46,11 +46,20 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/utilisateur_img_item"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:src="@drawable/logo_circle_blue"/>
+        <ImageButton
+            android:id="@+id/dashboard_utilisateur_item_modifier_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_mode_edit_24"
+            android:background="@drawable/nav_border"
+            android:layout_marginEnd="10dp"/>
+
+        <ImageButton
+            android:id="@+id/dashboard_utilisateur_item_supprimer_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_delete_24"
+            android:background="@drawable/nav_border"/>
 
     </LinearLayout>
 
