@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:contentPadding="10dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="8dp"
+    android:elevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/utilisateur_email_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="email"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/utilisateur_fullname_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fullname"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/utilisateur_isBanned_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="isBanned"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/dashboard_utilisateur_item_modifier_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_mode_edit_24"
+            android:background="@drawable/nav_border"
+            android:layout_marginEnd="10dp"/>
+
+        <ImageButton
+            android:id="@+id/dashboard_utilisateur_item_supprimer_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_delete_24"
+            android:background="@drawable/nav_border"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

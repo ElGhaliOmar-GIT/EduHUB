@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventDetails">
+
+    <ImageView
+        android:id="@+id/Detailimg"
+        android:layout_width="369dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="460dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+    <TextView
+        android:id="@+id/detailtitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="39dp"
+        android:fontFamily="cursive"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:textStyle="italic|bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/Detailimg" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="37dp"
+        android:fontFamily="cursive"
+        android:text="Status :"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintEnd_toStartOf="@+id/detailstatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detaildescription" />
+
+    <TextView
+        android:id="@+id/detailstatus"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="34dp"
+        android:fontFamily="cursive"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="146dp"
+        android:layout_height="33dp"
+        android:fontFamily="cursive"
+        android:text="Description :"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/detaildescription"
+        app:layout_constraintStart_toStartOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/detaildescription"
+        android:layout_width="133dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="30dp"
+        android:fontFamily="cursive"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/detailtype"
+        android:layout_width="0dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="38dp"
+        android:fontFamily="cursive"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/detailieu"
+        android:layout_width="277dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="112dp"
+        android:fontFamily="cursive"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="@+id/detailstatus"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/detaildate"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="cursive"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="@+id/detailstatus"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="105dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginEnd="46dp"
+        android:fontFamily="cursive"
+        android:text="Date :"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/detaildescription"
+        app:layout_constraintEnd_toStartOf="@+id/detaildescription"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="115dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="23dp"
+        android:fontFamily="cursive"
+        android:text="Lieu :"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailtitre" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="cursive"
+        android:text="Type :"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/deretour"
+        app:layout_constraintEnd_toStartOf="@+id/detailtype"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <Button
+        android:id="@+id/deretour"
+        android:layout_width="111dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/blue"
+        android:text="Retour"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/eventdelete"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <Button
+        android:id="@+id/eventdelete"
+        android:layout_width="111dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#FF3B3B"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="@+id/deretour"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/deretour"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/participe"
+        android:layout_width="111dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="170dp"
+        android:layout_marginBottom="35dp"
+        android:onClick="push"
+        android:text="Participe"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/eventdelete"
+        app:layout_constraintTop_toBottomOf="@+id/detailtype" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

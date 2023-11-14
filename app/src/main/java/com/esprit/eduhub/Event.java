@@ -1,13 +1,7 @@
 package com.esprit.eduhub;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,48 +10,90 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.esprit.eduhub.database.AppDataBase;
-import com.esprit.eduhub.entity.CategorieCours;
 import com.esprit.eduhub.entity.Evenement;
 
 import java.util.List;
 
-public class Index extends AppCompatActivity {
+public class Event extends AppCompatActivity {
+
 
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, profile, cours , evenement, logout, dashboard;
+    LinearLayout home, profile, cours , evenement;
     TextView toolbartitle;
-    Button savetest;
+    Button addevent , Retour;
+    EditText titre, lieu, description, status, type, date;
     private AppDataBase database ;
-    public SharedPreferences sp;
-    String email = "", password= "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index);
+        setContentView(R.layout.activity_evenement);
 
-        sp = getSharedPreferences(LoginFragment.spName, Context.MODE_PRIVATE);
-        email = sp.getString("email", "default");
-        password = sp.getString("password", "default");
-        System.out.println(email + " : " + password);
+        // -------------------------------Ajout fl base de donnees evenement--------------------------------
+        // ---------------------------------------------------------------
 
-        // ---------------------------------------------------------------
-        // --------------------- Ajout fl base de donnees categorie
-        // ---------------------------------------------------------------
-        savetest = findViewById(R.id.savetest);
+        titre = findViewById(R.id.titre);
+        lieu = findViewById(R.id.lieu);
+        description = findViewById(R.id.description);
+        status = findViewById(R.id.status);
+        type = findViewById(R.id.type);
+        date = findViewById(R.id.date);
+        addevent = findViewById(R.id.addevent);
+        Retour = findViewById(R.id.Retour);
         database = AppDataBase.getAppDatabase(getApplicationContext());
-        savetest.setOnClickListener(new View.OnClickListener() {
+        addevent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CategorieCours categorieCours = new CategorieCours("abc");
-                database.categorieCoursDao().insertOne(categorieCours);
-                List<CategorieCours> categorieCoursList = database.categorieCoursDao().getAll();
-                System.out.println(categorieCoursList);
+                Evenement evenem = new Evenement(titre.getText().toString(), lieu.getText().toString(),date.getText().toString(), description.getText().toString(), status.getText().toString(), type.getText().toString(), R.drawable.logo_circle_blue);
+
+                // Insert the event into the database
+                long insertedRowId = database.evenementDao().insert(evenem);
+
+                if (insertedRowId != -1) {
+                    // Insertion was successful
+                    System.out.println("Event inserted successfully. Row ID: " + insertedRowId);
+
+                    // Retrieve and print all events in the database
+                    List<Evenement> ev = database.evenementDao().getAll();
+                    System.out.println("All events in the database:");
+                    for (Evenement evenList : ev) {
+                        System.out.println(evenList);
+                    }
+                    // Start the EventRecyclerViewActivity
+                    Intent intent = new Intent(Event.this, event_recycle_view.class);
+                    startActivity(intent);
+                } else {
+                    // Insertion failed
+                    System.out.println("Failed to insert event into the database.");
+                }
+
+            }
+
+
+
+        });
+
+        Retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Event.this, event_recycle_view.class);
+                startActivity(intent);
             }
         });
 
+
+        // ---------------------------------------------------------------
+        // --------------------- Drawer Logic
+        // ---------------------------------------------------------------
+
+
+        // ---------------------------------------------------------------
 
         // ---------------------------------------------------------------
         // --------------------- Drawer Logic
@@ -69,10 +105,8 @@ public class Index extends AppCompatActivity {
         cours = findViewById(R.id.nav_cours_btn);
         toolbartitle = findViewById(R.id.toolbar_title);
         evenement= findViewById(R.id.nav_evenement_btn);
-        logout = findViewById(R.id.nav_logout_btn);
-        dashboard = findViewById(R.id.nav_dashboard_btn);
 
-        toolbartitle.setText("Acceuil");
+        toolbartitle.setText("Evenements");
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +118,13 @@ public class Index extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                redirectActivity(Event.this, Index.class);
+            }
+        });
+
+        evenement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 recreate();
             }
         });
@@ -91,38 +132,14 @@ public class Index extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, UserProfile.class);
+                redirectActivity(Event.this, UserProfile.class);
             }
         });
 
         cours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                redirectActivity(Index.this, Cours.class);
-            }
-        });
-
-        evenement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(Index.this, event_recycle_view.class);
-            }
-        });
-
-        SharedPreferences.Editor preferencesEditor = sp.edit();
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                preferencesEditor.clear();
-                preferencesEditor.apply();
-                redirectActivity(Index.this, MainActivity.class);
-            }
-        });
-
-        dashboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(Index.this, DashboardUtilisateurActivity.class);
+                redirectActivity(Event.this, Cours.class);
             }
         });
         // ---------------------------------------------------------------
@@ -154,6 +171,4 @@ public class Index extends AppCompatActivity {
         super.onPause();
         closeDrawer(drawerLayout);
     }
-    // ---------------------------------------------------------------
-    // ---------------------------------------------------------------
 }
