@@ -44,7 +44,7 @@ public class DashboardUtilisateurActivity extends AppCompatActivity {
         System.out.println(utilisateurs.toString());
         DashboardUtilisateurAdapter utilisateurAdapter = new DashboardUtilisateurAdapter(utilisateurs);
         utilisateurListView.setAdapter(utilisateurAdapter);
-        utilisateurListView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
+        utilisateurListView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         // ---------------------------------------------------------------
         // --------------------- Drawer Logic

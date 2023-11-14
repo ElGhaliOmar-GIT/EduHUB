@@ -29,10 +29,12 @@ public class DashboardUtilisateurAdapter extends RecyclerView.Adapter<DashboardU
     @Override
     public void onBindViewHolder(@NonNull DashboardUtilisateurHolder holder, int position) {
         holder.email.setText(utilisateurs.get(position).getEmail());
+        holder.fullname.setText(utilisateurs.get(position).getPrenom() + utilisateurs.get(position).getNom());
+        holder.fullname.setText("false");
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return this.utilisateurs.size();
     }
 }
