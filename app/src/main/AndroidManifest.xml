@@ -13,6 +13,9 @@
         android:theme="@style/Theme.EduHUB"
         tools:targetApi="34">
         <activity
+            android:name=".DashboardUtilisateurActivity"
+            android:exported="false" />
+        <activity
             android:name=".Cours"
             android:exported="false" />
         <activity
@@ -20,8 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".Index"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
