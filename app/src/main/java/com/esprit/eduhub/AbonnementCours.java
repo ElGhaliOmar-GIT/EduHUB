@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class AbonnementCours extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, profile, cours, abonnement;
+    LinearLayout home, profile, cours, abonnement, paiement, forfait;
     TextView toolbartitle;
     ImageView imageCourse;
     TextView textCourseDescription;
@@ -49,6 +49,7 @@ public class AbonnementCours extends AppCompatActivity {
         cours = findViewById(R.id.nav_cours_btn);
         toolbartitle = findViewById(R.id.toolbar_title);
         abonnement = findViewById(R.id.nav_AbonnementCours);
+        paiement = findViewById(R.id.nav_Paiement_Cours);
 
         toolbartitle.setText("Abonnement");
 
@@ -77,6 +78,13 @@ public class AbonnementCours extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 redirectActivity(AbonnementCours.this, Index.class);
+            }
+        });
+
+        paiement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(AbonnementCours.this, PaiementCours.class);
             }
         });
         // ---------------------------------------------------------------

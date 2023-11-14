@@ -24,7 +24,7 @@ import java.util.List;
 public class ListPaiementCours extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageView menu;
-    LinearLayout home, profile, cours , examenButtom, paiement;
+    LinearLayout home, profile, cours , paiement,abonnement;
     TextView toolbartitle;
     private AppDataBase database;
     RecyclerView listpaiement;
@@ -39,11 +39,13 @@ public class ListPaiementCours extends AppCompatActivity {
         listpaiement = findViewById(R.id.list_paiement);
         ajouter = findViewById(R.id.ajouter_paiement);
         database = AppDataBase.getAppDatabase(getApplicationContext());
+
         List<Paiement> paiements = database.paiementDao().getAll();
         ArrayList<Paiement> paiementArrayList = new ArrayList<>();
         for (Paiement cat:paiements) {
             paiementArrayList.add(cat);
         }
+
        PaiementItemAdapter paiementItemAdapter = new PaiementItemAdapter(paiementArrayList);
         listpaiement.setAdapter(paiementItemAdapter);
         listpaiement.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
@@ -65,6 +67,7 @@ public class ListPaiementCours extends AppCompatActivity {
         cours = findViewById(R.id.nav_cours_btn);
         toolbartitle = findViewById(R.id.toolbar_title);
         paiement = findViewById(R.id.nav_Paiement_Cours);
+        abonnement = findViewById(R.id.nav_AbonnementCours);
 
 
         toolbartitle.setText("Paiement");
@@ -102,6 +105,22 @@ public class ListPaiementCours extends AppCompatActivity {
                 redirectActivity(ListPaiementCours.this, Cours.class);
             }
         });
+
+        abonnement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(ListPaiementCours.this, AbonnementCours.class);
+            }
+        });
+
+        paiement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(ListPaiementCours.this, PaiementCours.class);
+            }
+        });
+
+
         // ---------------------------------------------------------------
         // ---------------------------------------------------------------
 

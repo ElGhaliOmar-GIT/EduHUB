@@ -77,15 +77,4 @@ public class Paiement {
         this.codeCarte = codeCarte;
     }
 
-    @Override
-    public String toString() {
-        return "Paiement{" +
-                "id=" + id +
-                ", typeCarte='" + typeCarte + '\'' +
-                ", nomCarte='" + nomCarte + '\'' +
-                ", numeroCarte=" + numeroCarte +
-                ", expirationDate='" + expirationDate + '\'' +
-                ", codeCarte=" + codeCarte +
-                '}';
-    }
 }
